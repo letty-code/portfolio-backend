@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Talhi Zohra – Frontend Developer Portfolio showcasing projects, skills, and contact information." />
+  <title>Talhi Zohra – Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to bottom, #0f0f0f, #1c1c1c);
+      color: #f3f3f3;
+    }
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+    }
+    .header-brand {
+      font-family: 'Playfair Display', serif;
+    }
+    .transition-smooth {
+      transition: all 0.3s ease-in-out;
+    }
+    .modal {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+    }
+  </style>
+</head>
+<body class="overflow-x-hidden">
+
+  <!-- Header -->
+  <header class="fixed w-full z-50 px-6 py-4 flex justify-between items-center bg-white/5 backdrop-blur-lg border-b border-white/10 shadow-md">
+    <div class="text-2xl font-extrabold tracking-wide text-white header-brand">Talhi Zohra</div>
+    <nav class="space-x-6 text-sm">
+      <a href="#about" class="hover:text-purple-300 transition-smooth">About</a>
+      <a href="#services" class="hover:text-purple-300 transition-smooth">Services</a>
+      <a href="#skills" class="hover:text-purple-300 transition-smooth">Skills</a>
+      <a href="#projects" class="hover:text-purple-300 transition-smooth">Projects</a>
+      <a href="#contact" class="hover:text-purple-300 transition-smooth">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section id="hero" class="min-h-screen flex items-center justify-center px-4 sm:px-6 pt-32 bg-gradient-to-br from-purple-900 via-black to-gray-900">
+    <div class="text-center max-w-2xl" data-aos="fade-up">
+      <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white">Frontend Developer</h1>
+      <p class="mb-6 text-gray-300">I build sleek, responsive websites with a passion for design and interactivity.</p>
+      <a href="#projects" class="bg-gradient-to-r from-purple-700 to-fuchsia-700 hover:from-purple-600 hover:to-fuchsia-600 text-white px-6 py-3 rounded-xl font-semibold transition-smooth">View My Works</a>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-24 px-4 sm:px-6 md:px-12 bg-gray-950 text-center">
+    <h2 class="text-3xl font-bold mb-6 text-purple-200" data-aos="fade-up">About Me</h2>
+    <p class="text-lg text-gray-300 max-w-3xl mx-auto" data-aos="fade-up">
+      I'm Zohra, a frontend developer passionate about crafting engaging, interactive user experiences.
+      I specialize in HTML, CSS, JavaScript, and modern UI frameworks. I enjoy turning complex problems into
+      simple, beautiful, and intuitive designs.
+    </p>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="py-24 px-4 sm:px-6 bg-gray-950 text-center">
+    <h2 class="text-3xl font-bold mb-10 text-purple-200" data-aos="fade-up">My Services</h2>
+    <div class="flex justify-center flex-wrap gap-8">
+      <div class="bg-white/5 backdrop-blur-lg border border-white/10 p-6 rounded-xl w-full max-w-sm hover:scale-105 transition-smooth" data-aos="zoom-in">
+        <h3 class="text-xl font-semibold mb-2 text-purple-300">Website Development</h3>
+        <p class="text-gray-400">Building modern, responsive websites using HTML, CSS, and JavaScript.</p>
+      </div>
+      <div class="bg-white/5 backdrop-blur-lg border border-white/10 p-6 rounded-xl w-full max-w-sm hover:scale-105 transition-smooth" data-aos="zoom-in">
+        <h3 class="text-xl font-semibold mb-2 text-purple-300">UI/UX Design</h3>
+        <p class="text-gray-400">Designing clean and user-friendly interfaces that engage users.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="py-24 px-4 sm:px-6 bg-gradient-to-b from-gray-950 to-black text-center">
+    <h2 class="text-3xl font-bold mb-12 text-purple-200" data-aos="fade-up">My Projects</h2>
+    <div class="flex flex-col md:flex-row justify-center items-start gap-10">
+      <div class="bg-white/5 backdrop-blur-lg border border-white/10 p-6 rounded-xl w-full md:w-1/2 max-w-md hover:shadow-xl hover:scale-105 transition-smooth" data-aos="fade-right">
+        <img src="img/2.png" alt="Project 1" class="w-full h-72 object-cover rounded-lg mb-4 cursor-pointer" onclick="openModal('img/2.png')">
+        <h3 class="text-xl text-purple-300 font-semibold">
+          <a href="https://letty-code.github.io/letty-shope/#" target="_blank" class="hover:underline">E-commerce Shop</a>
+        </h3>
+        <p class="text-gray-400">A responsive online shop built using HTML, CSS, and JavaScript with cart functionality and clean product layout.</p>
+        <div class="flex flex-wrap gap-2 mt-3 text-sm text-purple-300">
+          <span class="bg-white/10 px-2 py-1 rounded">HTML</span>
+          <span class="bg-white/10 px-2 py-1 rounded">CSS</span>
+          <span class="bg-white/10 px-2 py-1 rounded">JavaScript</span>
+        </div>
+      </div>
+      <div class="bg-white/5 backdrop-blur-lg border border-white/10 p-6 rounded-xl w-full md:w-1/2 max-w-md hover:shadow-xl hover:scale-105 transition-smooth" data-aos="fade-left">
+        <img src="img/4.png" alt="Project 2" class="w-full h-72 object-cover rounded-lg mb-4 cursor-pointer" onclick="openModal('img/5.png')">
+        <h3 class="text-xl text-purple-300 font-semibold">
+          <a href="https://letty-code.github.io/letty-music/#" target="_blank" class="hover:underline">Music App</a>
+        </h3>
+        <p class="text-gray-400">A modern music UI showcasing interactive controls and playlist layouts built with responsive techniques.</p>
+        <div class="flex flex-wrap gap-2 mt-3 text-sm text-purple-300">
+          <span class="bg-white/10 px-2 py-1 rounded">HTML</span>
+          <span class="bg-white/10 px-2 py-1 rounded">CSS</span>
+        </div>
+      </div>
+    </div>
+    <div id="imgModal" class="modal hidden">
+      <span class="absolute top-6 right-8 text-white text-3xl cursor-pointer" onclick="closeModal()">&times;</span>
+      <img id="modalImage" class="max-w-full max-h-[90vh] rounded-lg" src="" alt="Full Image" />
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="py-24 px-4 sm:px-6 bg-gradient-to-tr from-black to-gray-800 text-center">
+    <h2 class="text-3xl font-bold mb-12 text-purple-200" data-aos="fade-up">My Skills</h2>
+    <div class="flex justify-center flex-wrap gap-12 max-w-5xl mx-auto">
+      <div class="w-28 h-28 bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl flex items-center justify-center hover:scale-110 transition-smooth shadow-lg" data-aos="zoom-in">
+        <img src="img/html.svg" alt="HTML" class="w-16 h-16" />
+      </div>
+      <div class="w-28 h-28 bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl flex items-center justify-center hover:scale-110 transition-smooth shadow-lg" data-aos="zoom-in">
+        <img src="img/css.svg" alt="CSS" class="w-16 h-16" />
+      </div>
+      <div class="w-28 h-28 bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl flex items-center justify-center hover:scale-110 transition-smooth shadow-lg" data-aos="zoom-in">
+        <img src="img/js.svg" alt="JavaScript" class="w-16 h-16" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-24 px-4 sm:px-6 bg-gray-950 text-center">
+    <h2 class="text-3xl font-bold mb-6 text-purple-200" data-aos="fade-up">Contact Me</h2>
+    <p class="text-lg text-gray-300 mb-8" data-aos="fade-up">
+      I'd love to hear from you! Fill out the form below or email me directly at
+      <a href="mailto:zohratalhi1998@gmail.com" class="text-purple-400 hover:underline">zohratalhi1998@gmail.com</a>
+    </p>
+    <form id="contactForm" action="https://formspree.io/f/xjkrpakb" method="POST" class="max-w-xl mx-auto bg-white/5 backdrop-blur-lg border border-white/10 p-8 rounded-xl space-y-4 text-left" data-aos="fade-up">
+      <div>
+        <label for="name" class="block text-sm text-gray-300 mb-1">Name</label>
+        <input type="text" id="name" name="name" class="w-full px-4 py-2 rounded-md bg-gray-900 text-white border border-white/10 focus:outline-none focus:ring-2 focus:ring-purple-500" required>
+      </div>
+      <div>
+        <label for="email" class="block text-sm text-gray-300 mb-1">Email</label>
+        <input type="email" id="email" name="email" class="w-full px-4 py-2 rounded-md bg-gray-900 text-white border border-white/10 focus:outline-none focus:ring-2 focus:ring-purple-500" required>
+      </div>
+      <div>
+        <label for="message" class="block text-sm text-gray-300 mb-1">Message</label>
+        <textarea id="message" name="message" rows="5" class="w-full px-4 py-2 rounded-md bg-gray-900 text-white border border-white/10 focus:outline-none focus:ring-2 focus:ring-purple-500" required></textarea>
+      </div>
+      <button type="submit" class="bg-gradient-to-r from-purple-700 to-fuchsia-700 hover:from-purple-600 hover:to-fuchsia-600 text-white px-6 py-3 rounded-md font-semibold transition-smooth">Send Message</button>
+      <p id="thankYouMessage" class="text-green-400 text-sm mt-4 hidden">✅ Thank you! Your message has been sent.</p>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-6 bg-black text-center text-gray-500 text-sm">
+    <div class="flex justify-center gap-6 mb-2">
+      <a href="https://github.com/letty-code" target="_blank" class="hover:text-white">GitHub</a>
+      <a href="https://linkedin.com/in/your-profile" target="_blank" class="hover:text-white">LinkedIn</a>
+      <a href="resume.pdf" target="_blank" class="hover:text-white">Resume</a>
+    </div>
+    <p>© 2025 Talhi Zohra. All rights reserved.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    function openModal(src) {
+      document.getElementById('modalImage').src = src;
+      document.getElementById('imgModal').classList.remove('hidden');
+    }
+    function closeModal() {
+      document.getElementById('imgModal').classList.add('hidden');
+      document.getElementById('modalImage').src = "";
+    }
+
+    document.getElementById("contactForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+      const xhr = new XMLHttpRequest();
+      xhr.open(form.method, form.action);
+      xhr.setRequestHeader("Accept", "application/json");
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState !== XMLHttpRequest.DONE) return;
+        if (xhr.status === 200) {
+          form.reset();
+          document.getElementById("thankYouMessage").classList.remove("hidden");
+        }
+      };
+      xhr.send(data);
+    });
+  </script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>AOS.init({ duration: 800, once: true });</script>
+
+</body>
+</html>
+
+
+
+
+
+
