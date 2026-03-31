@@ -144,18 +144,33 @@
   </footer>
 
   <!-- Scripts -->
- <script>
+ <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+    AOS.init({ duration: 800, once: true });
+
+    // وظائف الـ Modal
+    function openModal(src) {
+        document.getElementById('modalImage').src = src;
+        document.getElementById('imgModal').classList.remove('hidden');
+    }
+    function closeModal() {
+        document.getElementById('imgModal').classList.add('hidden');
+        document.getElementById('modalImage').src = "";
+    }
+
+    // التعامل مع النموذج (Contact Form)
     document.getElementById("contactForm").addEventListener("submit", function(e) {
         e.preventDefault();
+        const form = e.target;
+        const thankYouMsg = document.getElementById("thankYouMessage");
         
         const data = {
-            name: this.name.value,
-            email: this.email.value,
-            message: this.message.value
+            name: form.name.value,
+            email: form.email.value,
+            message: form.message.value
         };
 
-        // نستخدم الرابط الكامل للسيرفر المحلي للتأكد
-        fetch("http://localhost:3000/api/contact", {
+        fetch("/api/contact", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data)
@@ -163,13 +178,19 @@
         .then(res => res.json())
         .then(response => {
             if (response.status === "success") {
-                this.reset();
-                document.getElementById("thankYouMessage").classList.remove("hidden");
+                form.reset();
+                thankYouMsg.classList.remove("hidden");
+                // إخفاء رسالة النجاح بعد 5 ثوانٍ
+                setTimeout(() => {
+                    thankYouMsg.classList.add("hidden");
+                }, 5000);
+            } else {
+                alert("حدث خطأ في الإرسال، يرجى المحاولة لاحقاً.");
             }
         })
         .catch(err => {
-            console.error("Error:", err);
-            alert("السيرفر لا يستجيب! تأكدي من تشغيله.");
+            console.error("Fetch error:", err);
+            alert("لا يمكن الاتصال بالسيرفر. تأكد من تشغيل server.js");
         });
     });
 </script>
