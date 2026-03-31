@@ -1,5 +1,3 @@
-// server.js
-
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
@@ -12,25 +10,38 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve static files (HTML, CSS, JS, images)
+// Serve static files
 app.use(express.static(path.join(__dirname, ".")));
 
-// API endpoint للـ Contact Form
-app.post("/api/contact", (req, res) => {
-  const { name, email, message } = req.body;
+// API endpoint لـ Contact Form
+app.post("/api/contact", async (req, res) => {
+    const { name, email, message } = req.body;
+    const webhookURL = "https://discordapp.com/api/webhooks/1488539839673536584/tqQdISeLM3gBZvK5lMYhWCmhKaaR7QbKqdUIrY0vK7HNheDJ-lo61wILwU1ea_77bLd9";
 
-  // عرض البيانات في الـ terminal / console
-  console.log("New contact message:");
-  console.log("Name:", name);
-  console.log("Email:", email);
-  console.log("Message:", message);
+    const discordPayload = {
+        content: `🔔 **رسالة جديدة من المحفظة!**\n**الاسم:** ${name}\n**الإيميل:** ${email}\n**الرسالة:** ${message}`
+    };
 
-  // الرد على العميل
-  res.json({ status: "success", text: "✅ Your message has been sent!" });
-  
+    try {
+        const response = await fetch(webhookURL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(discordPayload)
+        });
+
+        if (response.ok) {
+            console.log(`✅ Message from ${name} sent to Discord.`);
+            res.json({ status: "success" });
+        } else {
+            throw new Error("Discord Webhook failed");
+        }
+    } catch (err) {
+        console.error("❌ Error:", err);
+        res.status(500).json({ status: "error", message: "Failed to send message" });
+    }
 });
 
 // Start the server
-app.listen(port,"0.0.0.0", () => {
-  console.log(`Server running on port ${port}`);
+app.listen(port, "0.0.0.0", () => {
+    console.log(`Server running on http://localhost:${port}`);
 });

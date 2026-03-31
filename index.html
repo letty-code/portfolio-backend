@@ -144,46 +144,56 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <script>
+ <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
     AOS.init({ duration: 800, once: true });
 
+    // وظائف الـ Modal
     function openModal(src) {
-      document.getElementById('modalImage').src = src;
-      document.getElementById('imgModal').classList.remove('hidden');
+        document.getElementById('modalImage').src = src;
+        document.getElementById('imgModal').classList.remove('hidden');
     }
     function closeModal() {
-      document.getElementById('imgModal').classList.add('hidden');
-      document.getElementById('modalImage').src = "";
+        document.getElementById('imgModal').classList.add('hidden');
+        document.getElementById('modalImage').src = "";
     }
 
+    // التعامل مع النموذج (Contact Form)
     document.getElementById("contactForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const form = e.target;
-      const data = {
-        name: form.name.value,
-        email: form.email.value,
-        message: form.message.value
-      };
+        e.preventDefault();
+        const form = e.target;
+        const thankYouMsg = document.getElementById("thankYouMessage");
+        
+        const data = {
+            name: form.name.value,
+            email: form.email.value,
+            message: form.message.value
+        };
 
-      fetch("portfolio-backend-production-72b3.up.railway.app/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-      })
-      .then(res => res.json())
-      .then(response => {
-        if (response.status === "success") {
-          form.reset();
-          document.getElementById("thankYouMessage").classList.remove("hidden");
-        }
-      })
-      .catch(err => {
-        console.error(err);
-        alert("حدث خطأ 😢");
-      });
+        fetch("/api/contact", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(response => {
+            if (response.status === "success") {
+                form.reset();
+                thankYouMsg.classList.remove("hidden");
+                // إخفاء رسالة النجاح بعد 5 ثوانٍ
+                setTimeout(() => {
+                    thankYouMsg.classList.add("hidden");
+                }, 5000);
+            } else {
+                alert("حدث خطأ في الإرسال، يرجى المحاولة لاحقاً.");
+            }
+        })
+        .catch(err => {
+            console.error("Fetch error:", err);
+            alert("لا يمكن الاتصال بالسيرفر. تأكد من تشغيل server.js");
+        });
     });
-  </script>
+</script>
 </body>
 </html>
 
