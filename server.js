@@ -27,9 +27,10 @@ app.post("/api/contact", (req, res) => {
 
   // الرد على العميل
   res.json({ status: "success", text: "✅ Your message has been sent!" });
+  
 });
 
 // Start the server
-app.listen(port, () => {
+app.listen(port,"0.0.0.0", () => {
   console.log(`Server running on port ${port}`);
 });
