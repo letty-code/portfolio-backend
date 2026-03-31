@@ -16,7 +16,7 @@ app.post("/api/contact", async (req, res) => {
   const { name, email, message } = req.body;
 
   const discordData = {
-    content: `**New Contact Message**\n**Name:** ${name}\n**Email:** ${email}\n**Message:** ${message}`
+    content: 'New Contact Message**\n**Name:** ${name}\n**Email:** ${email}\n**Message:** ${message}'
   };
 
   try {
