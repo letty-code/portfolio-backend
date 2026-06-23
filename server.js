@@ -42,6 +42,10 @@ app.post("/api/contact", async (req, res) => {
 });
 
 // Start the server
+app.get("/", (req, res) => {
+    res.send("Backend is running");
+});
+
 app.listen(port, "0.0.0.0", () => {
-    console.log(`Server running on http://localhost:${port}`);
+    console.log(`Server running on ${port}`);
 });
